@@ -162,7 +162,7 @@
                                         </Style>
                                     </DataGrid.Resources>
                                     <DataGrid.Columns>
-                                        <DataGridTextColumn  Header="NO"    Binding="{Binding NO}" Width="2*" IsReadOnly="True">
+                                        <DataGridTextColumn  Header="NO"    Binding="{Binding NO}" Width="1*" IsReadOnly="True">
                                             <DataGridTextColumn.ElementStyle>
                                                 <Style TargetType="{x:Type TextBlock}">
                                                     <Setter Property="TextBlock.VerticalAlignment" Value="Center" />
@@ -176,14 +176,14 @@
                                                 </Style>
                                             </DataGridTextColumn.ElementStyle>
                                         </DataGridTextColumn>
-                                        <DataGridTextColumn Header="NRP" Binding="{Binding NRP}" Width="3*" IsReadOnly="True">
+                                        <DataGridTextColumn Header="NRP" Binding="{Binding NRP}" Width="2*" IsReadOnly="True">
                                             <DataGridTextColumn.ElementStyle>
                                                 <Style TargetType="{x:Type TextBlock}">
                                                     <Setter Property="TextBlock.VerticalAlignment" Value="Center" />
                                                 </Style>
                                             </DataGridTextColumn.ElementStyle>
                                         </DataGridTextColumn>
-                                        <DataGridTextColumn Header="PANGKAT" Binding="{Binding PANGKAT}" Width="3*" IsReadOnly="True">
+                                        <DataGridTextColumn Header="PANGKAT" Binding="{Binding PANGKAT}" Width="2*" IsReadOnly="True">
                                             <DataGridTextColumn.ElementStyle>
                                                 <Style TargetType="{x:Type TextBlock}">
                                                     <Setter Property="TextBlock.VerticalAlignment" Value="Center" />
@@ -197,14 +197,14 @@
                                                 </Style>
                                             </DataGridTextColumn.ElementStyle>
                                         </DataGridTextColumn>
-                                        <DataGridTextColumn Header="KORPS" Binding="{Binding KORPS}" Width="3*" IsReadOnly="True">
+                                        <DataGridTextColumn Header="KORPS" Binding="{Binding KORPS}" Width="2*" IsReadOnly="True">
                                             <DataGridTextColumn.ElementStyle>
                                                 <Style TargetType="{x:Type TextBlock}">
                                                     <Setter Property="TextBlock.VerticalAlignment" Value="Center" />
                                                 </Style>
                                             </DataGridTextColumn.ElementStyle>
                                         </DataGridTextColumn>
-                                        <DataGridTextColumn Header="TANGGAL LAHIR" Binding="{Binding TANGGAL_LAHIR}" Width="3*" IsReadOnly="True">
+                                        <DataGridTextColumn Header="TANGGAL LAHIR" Binding="{Binding TANGGAL_LAHIR}" Width="2*" IsReadOnly="True">
                                             <DataGridTextColumn.ElementStyle>
                                                 <Style TargetType="{x:Type TextBlock}">
                                                     <Setter Property="TextBlock.VerticalAlignment" Value="Center" />

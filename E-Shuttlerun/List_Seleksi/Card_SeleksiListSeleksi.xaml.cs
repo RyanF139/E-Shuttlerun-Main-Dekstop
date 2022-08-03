@@ -63,7 +63,7 @@ namespace E_Shuttlerun.List_Seleksi
             string id = _pilihSeleksiModel.id.ToString();            
 
             string url = System.Configuration.ConfigurationManager.AppSettings["SERVER_API_LOCAL"];
-            string route = "/seleksi/" + id;
+            string route = "/seleksi/delete?seleksiid=" + id;
             var response = await client.DeleteAsync(url + route);
             var responstring = await response.Content.ReadAsStringAsync();
             Console.Write(responstring);
