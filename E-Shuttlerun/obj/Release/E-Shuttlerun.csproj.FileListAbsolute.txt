@@ -84,3 +84,5 @@ C:\Users\Ryan\Documents\Project TCB\Project 2022\E-Shuttlerun\Main Project\E-Shu
 C:\Users\Ryan\Documents\Project TCB\Project 2022\E-Shuttlerun\Main Project\E-Shuttlerun_V.01\3. E-ShuttleDesktop\E-Shuttlerun\E-Shuttlerun\obj\Release\E-Shuttlerun.csproj.CopyComplete
 C:\Users\Ryan\Documents\Project TCB\Project 2022\E-Shuttlerun\Main Project\E-Shuttlerun_V.01\3. E-ShuttleDesktop\E-Shuttlerun\E-Shuttlerun\obj\Release\E-Shuttlerun.exe
 C:\Users\Ryan\Documents\Project TCB\Project 2022\E-Shuttlerun\Main Project\E-Shuttlerun_V.01\3. E-ShuttleDesktop\E-Shuttlerun\E-Shuttlerun\obj\Release\E-Shuttlerun.pdb
+C:\Users\Ryan\Documents\Project TCB\Project 2022\E-Shuttlerun\Main Project\E-Shuttlerun_V.01\3. E-ShuttleDesktop\E-Shuttlerun\E-Shuttlerun\bin\Release\System.CodeDom.dll
+C:\Users\Ryan\Documents\Project TCB\Project 2022\E-Shuttlerun\Main Project\E-Shuttlerun_V.01\3. E-ShuttleDesktop\E-Shuttlerun\E-Shuttlerun\bin\Release\System.CodeDom.xml
