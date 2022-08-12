@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Management;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -31,7 +33,8 @@ namespace E_Shuttlerun
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            CallLogin();            
+            CallLogin();
+            CekSerialNumber();
         }
 
         private void Window_Unloaded(object sender, RoutedEventArgs e)
@@ -66,5 +69,45 @@ namespace E_Shuttlerun
             PanelMainPanel.Children.Clear();
             PanelMainPanel.Children.Add(mainApp);
         }
+
+        // Cek Lisensi by SN Device
+        private void CekSerialNumber()
+        {
+            ManagementObjectSearcher MOS = new ManagementObjectSearcher("SELECT * FROM Win32_BIOS");
+            foreach (ManagementObject getserial in MOS.Get())
+            {
+                string SerialNumber = getserial["SerialNumber"].ToString();                
+                Console.WriteLine(SerialNumber);
+
+                StringBuilder hash = new StringBuilder();
+                MD5CryptoServiceProvider md5provider = new MD5CryptoServiceProvider();
+                byte[] bytes = md5provider.ComputeHash(new UTF8Encoding().GetBytes(SerialNumber));
+
+                for (int i = 0; i < bytes.Length; i++)
+                {
+                    hash.Append(bytes[i].ToString("x2"));
+                }
+                string key = hash.ToString();
+                Console.WriteLine(key);
+
+                CekLisensi(key);
+            }
+        }
+        
+        private void CekLisensi(string key)
+        {
+            string KeyMaster = System.Configuration.ConfigurationManager.AppSettings["LICENSE"];
+
+            if (key != KeyMaster)
+            {
+                if (MessageBox.Show(" You Don't Have a License !!", "Message", MessageBoxButton.OK, MessageBoxImage.Warning) == MessageBoxResult.OK)
+                {
+                    this.Close();  
+                }
+            }
+            
+        }
+
+
     }
 }
