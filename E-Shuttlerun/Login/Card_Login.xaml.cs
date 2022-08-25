@@ -29,7 +29,7 @@ namespace E_Shuttlerun.Login
         string url ;
         string route = "/api/v2/login";
 
-        public string id;
+        public string id_testor;
         public string status_user;
         public string nama_user;
         string mode; // from MainLogin
@@ -103,20 +103,21 @@ namespace E_Shuttlerun.Login
                 {
                     JObject data = JObject.Parse(stuff["data"].ToString());
 
-                    id = data["id"].ToString();
+                    id_testor = data["id"].ToString();
                     nama_user = data["nama"].ToString();
                     status_user = data["role"].ToString();                    
                     bool status_password = ((bool)data["status_password"]);
                     //Console.WriteLine(status_password);
+                    //MessageBox.Show(nama_user);
 
                     if (status_user == "PANITIA" && status_password == true || status_user == "ADMIN" && status_password == true || status_user == "TESTOR" && status_password == true)
                     {
                         MessageBox.Show(message);
-                        _mainLogin.callapp(status_user, nama_user);
+                        _mainLogin.callapp(status_user, nama_user,id_testor);
                     }                   
                     else if (status_password == false)
                     {
-                        MessageBox.Show(message + " Kamu pertama kali login silahkan ganti password");
+                        MessageBox.Show(message +" Kamu pertama kali login silahkan ganti password");
                         CallCardNewPassword();
                         
                     }

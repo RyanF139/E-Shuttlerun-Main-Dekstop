@@ -24,6 +24,7 @@ namespace E_Shuttlerun.Main_App
         public MainWindow _main;
         public string status_user; // from Main Windows
         public string nama_user;
+        public string id_testor;
         public string mode;
         public MainApp(MainWindow main)
         {
@@ -31,7 +32,8 @@ namespace E_Shuttlerun.Main_App
             _main = main;        
                         
             status_user = _main.status_user.ToString(); 
-            nama_user = _main.nama_user.ToString(); 
+            nama_user = _main.nama_user.ToString();
+            id_testor = _main.id_testor.ToString();
             mode = _main.mode.ToString() ;
             LabelUser.Content = status_user;
             CallMenuBar();

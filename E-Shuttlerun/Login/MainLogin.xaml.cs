@@ -23,6 +23,7 @@ namespace E_Shuttlerun.Login
         public string mode;
         public string status_user; // From Login & Change Password
         public string nama_user; // From Login & Change Password
+        public string id_testor;
 
         public MainWindow _main;        
         public MainLogin(MainWindow main)
@@ -31,7 +32,8 @@ namespace E_Shuttlerun.Login
             DataContext = this;
             _main = main;
             CallCardLogin();
-            ToggleStandalone.IsChecked= true;                                  
+            //ToggleStandalone.IsChecked= true;                                  
+            toggleIntegrated.IsChecked = true;
         }
 
         public void CallCardLogin()
@@ -41,12 +43,13 @@ namespace E_Shuttlerun.Login
             PanelLogin.Children.Add(card_Login);
         }
 
-        public void callapp(String _status_user, String _nama_user)
+        public void callapp(String _status_user, String _nama_user, String _id_testor)
         {
             status_user = _status_user.ToString(); // From Login & Change Password
             nama_user = _nama_user.ToString(); // From Login & Change Password
+            id_testor = _id_testor.ToString();
             
-            _main.CallMainApp(status_user, nama_user, mode);
+            _main.CallMainApp(status_user, nama_user, id_testor, mode);
         }
         
         public void ValidateMode()

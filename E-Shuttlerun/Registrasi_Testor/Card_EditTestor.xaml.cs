@@ -102,7 +102,7 @@ namespace E_Shuttlerun.Registrasi_Testor
 
                 var content = new FormUrlEncodedContent(values);
 
-                var response = await client.PostAsync(url + routetestor + idTestor, content);
+                var response = await client.PutAsync(url + routetestor + idTestor, content);
                 var responseString = await response.Content.ReadAsStringAsync();
                 //Console.WriteLine(responseString);
 

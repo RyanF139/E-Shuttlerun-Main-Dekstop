@@ -25,6 +25,7 @@ namespace E_Shuttlerun
 
         public string status_user;
         public string nama_user;
+        public string id_testor;
         public string mode;
         public MainWindow()
         {
@@ -60,10 +61,11 @@ namespace E_Shuttlerun
             
         }
 
-        public void CallMainApp(String _status_user, String _nama_user, String _mode)
+        public void CallMainApp(String _status_user, String _nama_user, String _id_testor, String _mode)
         {
             status_user = _status_user.ToString(); // From Main Login
             nama_user = _nama_user.ToString(); // From Main Login
+            id_testor = _id_testor.ToString();
             mode = _mode.ToString();            
             Main_App.MainApp mainApp = new Main_App.MainApp(this);
             PanelMainPanel.Children.Clear();

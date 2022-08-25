@@ -26,6 +26,7 @@ namespace E_Shuttlerun.Main_App
 
         public string status_user; // From Main App
         public string nama_user; // From Main App
+        public string id_testor;
         public string mode;
 
         public string seleksiid;
@@ -44,6 +45,7 @@ namespace E_Shuttlerun.Main_App
 
             status_user = _mainapp.status_user.ToString(); //status dari mainapp
             nama_user = _mainapp.nama_user.ToString(); //namaTestor dari mainapp
+            id_testor = _mainapp.id_testor.ToString();
             mode = _mainapp.mode.ToString(); // From Main App
            
             ValidasiAksesUser();
@@ -307,6 +309,11 @@ namespace E_Shuttlerun.Main_App
                 worker.WaitForExit();
                 worker.Dispose();
             }
+        }
+
+        public void ClearMainPanel()
+        {
+            _mainapp.PanelMainApp.Children.Clear();
         }
 
     }

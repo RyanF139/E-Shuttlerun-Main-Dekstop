@@ -27,6 +27,7 @@ namespace E_Shuttlerun.Run
         string Run_Activity;
 
         string nama_testor;  // From Menu Bar
+        string id_testor;
         string mode;  // From Menu Bar
         string seleksiid; // From Model
 
@@ -41,6 +42,7 @@ namespace E_Shuttlerun.Run
             _pilihSeleksiModel = model;
 
             nama_testor = _mainrun._menuBar.nama_user;
+            id_testor = _mainrun._menuBar.id_testor;
             mode = _mainrun._menuBar.mode;
             seleksiid = _pilihSeleksiModel.id.ToString();
             ValidateRun();
@@ -51,6 +53,7 @@ namespace E_Shuttlerun.Run
             if (mode == "Integrated")
             {
                 Run_Activity = Run_Activity_Integrated;
+                
             }
             else if (mode == "Standalone")
             {
@@ -62,14 +65,16 @@ namespace E_Shuttlerun.Run
         {
             Button btn = sender as Button;
             PilihSeleksiModel model = btn.DataContext as PilihSeleksiModel;
-            string seleksi_id = model.id;
-           
-            string argument = String.Format("{0} \"{1}\"", nama_testor, seleksiid);
+            /*string seleksi_id = model.id;*/
+            Console.WriteLine(Run_Activity);
+            string argument = String.Format("{0} \"{1}\" {2}", id_testor, nama_testor,seleksiid);
             Console.WriteLine(argument);
             Process p = new Process();
             p.StartInfo.FileName = Run_Activity;
             p.StartInfo.Arguments = argument;
             p.Start();
+
+            _mainrun._menuBar.ClearMainPanel();
         }
     }
 }

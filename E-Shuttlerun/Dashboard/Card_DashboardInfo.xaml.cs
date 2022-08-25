@@ -77,9 +77,9 @@ namespace E_Shuttlerun.Dashboard
                 if (stuff["status"].ToString() == "Success")
                 {
                     JObject data = JObject.Parse(stuff["data"].ToString());
-                    LabelJumlahPeserta.Text = data["jumlah_peserta"].ToString();
-                    LabelJumlahAntrian.Text = data["antrian"].ToString();
-                    LabelSelesai.Text = data["selesai"].ToString();
+                    LabelJumlahPeserta.Text = data["total_peserta"].ToString();
+                    LabelJumlahAntrian.Text = data["belum_dinilai"].ToString();
+                    LabelSelesai.Text = data["sudah_dinilai"].ToString();
 
                 }
 

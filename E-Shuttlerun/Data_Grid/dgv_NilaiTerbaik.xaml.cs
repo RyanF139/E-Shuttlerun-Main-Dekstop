@@ -91,10 +91,10 @@ namespace E_Shuttlerun.Data_Grid
 
                     DaftarTerbaik.Add(new ListCapaianModel
                     {
-                        NO_TEST = obj["id"].ToString(),
+                        NO_TEST = obj["nomor_test"].ToString(),
                         NAMA = obj["nama"].ToString(),
                         HASIL = obj["hasil"].ToString(),
-                        TESTOR = obj["testor"].ToString(),
+                        TESTOR = obj["nama_testor"].ToString(),
                     });
 
                     for (int i = 0; i < DaftarTerbaik.Count; i++)

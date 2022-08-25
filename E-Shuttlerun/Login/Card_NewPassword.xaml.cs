@@ -69,7 +69,7 @@ namespace E_Shuttlerun.Login
         {
             try
             {
-                string id = _card_login.id.ToString();
+                string id = _card_login.id_testor.ToString();
                 var values = new Dictionary<string, string>
                 {
                     { "user_id", id },
@@ -91,12 +91,13 @@ namespace E_Shuttlerun.Login
                 string message = stuff["message"].ToString();                
                 string status_users = _card_login.status_user.ToString();
                 string nama_testor = _card_login.nama_user.ToString();
+                string id_testor = _card_login.id_testor.ToString();
                 Console.WriteLine(message,status_users);
 
                 if (status == "Success")
                 {
                     //_card_login._mainLogin.callapp(status_users, nama_testor);
-                    _card_login._mainLogin.callapp(status_users, nama_testor);
+                    _card_login._mainLogin.callapp(status_users, id_testor , nama_testor);
                 }
                 else
                 {

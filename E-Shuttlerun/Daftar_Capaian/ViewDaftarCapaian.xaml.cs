@@ -129,10 +129,10 @@ namespace E_Shuttlerun.Daftar_Capaian
 
                     DataCapaian.Add(new ListCapaianModel
                     {
-                        NO_TEST = obj["id"].ToString(),
+                        NO_TEST = obj["nomor_test"].ToString(),
                         NAMA = obj["nama"].ToString(),
                         HASIL = obj["hasil"].ToString(),                        
-                        TESTOR = obj["testor"].ToString(),
+                        TESTOR = obj["nama_testor"].ToString(),
                         WAKTU_SELESAI = obj["waktu_selesai"].ToString(),
                     });
 
