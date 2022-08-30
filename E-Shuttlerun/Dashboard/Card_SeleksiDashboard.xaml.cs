@@ -28,9 +28,12 @@ namespace E_Shuttlerun.Dashboard
             InitializeComponent();            
             DataContext = model;
             _mainDashboardl = mainDashboardl;
-
-            RoutedEventArgs newEventArgs = new RoutedEventArgs(Button.ClickEvent);
-            btn_ViewDashboard.RaiseEvent(newEventArgs);
+            if(model.key == 0)
+            {
+                RoutedEventArgs newEventArgs = new RoutedEventArgs(Button.ClickEvent);
+                btn_ViewDashboard.RaiseEvent(newEventArgs);
+            }
+            
 
         }
 
@@ -39,10 +42,13 @@ namespace E_Shuttlerun.Dashboard
             Button btn = sender as Button;
             PilihSeleksiModel model = btn.DataContext as PilihSeleksiModel;
 
-            string idSeleksi = model.id;        
-            
+            string idSeleksi = model.id;
+            _mainDashboardl._card = this;
+           // _mainDashboardl.GetSeleksi();
             _mainDashboardl.CallDashboardInfo(idSeleksi);
             _mainDashboardl.CallGridNilaiTerbaik();
+
+            _mainDashboardl.cekSelected();
         }
     }
 }

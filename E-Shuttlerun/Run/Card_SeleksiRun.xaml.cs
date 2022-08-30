@@ -63,6 +63,7 @@ namespace E_Shuttlerun.Run
 
         private void btn_ViewRunActivity_Click(object sender, RoutedEventArgs e)
         {
+            
             Button btn = sender as Button;
             PilihSeleksiModel model = btn.DataContext as PilihSeleksiModel;
             /*string seleksi_id = model.id;*/

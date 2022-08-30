@@ -30,6 +30,7 @@ namespace E_Shuttlerun.Dashboard
         string url;
         string mode;
         string route = "/seleksi";
+        public Card_SeleksiDashboard _card;
 
         public string IdSeleksi;
 
@@ -40,7 +41,7 @@ namespace E_Shuttlerun.Dashboard
             _menuBar = menuBar;
 
             mode = _menuBar.mode.ToString();
-
+            _card = null;
             ValidateUrl();
             GetSeleksi();            
             
@@ -73,8 +74,27 @@ namespace E_Shuttlerun.Dashboard
             PanelNilaiTerbaik.Children.Clear();
             PanelNilaiTerbaik.Children.Add(dgvNilaiTerbaik);
         }
+
+        public int selectedIndex = 0;
+
+        public void cekSelected()
+        {
+            foreach(Card_SeleksiDashboard cardSeleksi in PanelSeleksiDashboard.Children)
+            {
+                if(cardSeleksi == _card)
+                {
+
+                    cardSeleksi.btn_ViewDashboard.Background = new SolidColorBrush(Color.FromRgb(2, 31, 126));                    
+                }
+                else
+                {
+                    cardSeleksi.btn_ViewDashboard.Background = new SolidColorBrush(Color.FromRgb(55, 71, 79));
+                    
+                }
+            }
+        }
         
-        private async void GetSeleksi()
+        public async void GetSeleksi()
         {
             try
             {                
@@ -90,7 +110,10 @@ namespace E_Shuttlerun.Dashboard
                 JArray data = (JArray)stuff["data"];
                 Console.Write(data);
 
+               
 
+                PanelSeleksiDashboard.Children.Clear();
+                int key = 0;
                 foreach (JObject obj in data)
                 {
                     PanelSeleksiDashboard.Children.Add(new Card_SeleksiDashboard(this, new PilihSeleksiModel
@@ -98,9 +121,13 @@ namespace E_Shuttlerun.Dashboard
                         id = obj["id"].ToString(),
                         status = obj["status"].ToString(),
                         nama = obj["nama"].ToString(),
-                        waktu_mulai = obj["tanggal_mulai"].ToString() + " " + "S.d" + " " + obj["tanggal_selesai"]
-                    }));
+                        waktu_mulai = obj["tanggal_mulai"].ToString() + " " + "S.d" + " " + obj["tanggal_selesai"],
+                        key = key
+                    })) ;
+                    key ++;
                 }
+
+                cekSelected();
             }
             catch (HttpRequestException e)
             {

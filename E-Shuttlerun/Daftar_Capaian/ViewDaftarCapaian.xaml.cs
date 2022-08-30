@@ -59,13 +59,13 @@ namespace E_Shuttlerun.Daftar_Capaian
             namaseleksi = _menubar.namaseleksi.ToString();
             titleLabel.Text = namaseleksi;
             mode = _menubar.mode.ToString();
-
-            
+           
             cbNumberOfRecords.Items.Add("10");
             cbNumberOfRecords.Items.Add("15");
             cbNumberOfRecords.Items.Add("20");
             cbNumberOfRecords.Items.Add("25");
             cbNumberOfRecords.Items.Add("30");
+            cbNumberOfRecords.Items.Add("150");
 
             search = null;
             lastPage = 1;

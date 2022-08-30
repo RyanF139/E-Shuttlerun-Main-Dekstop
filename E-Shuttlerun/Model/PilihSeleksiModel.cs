@@ -12,6 +12,7 @@ namespace E_ShuttleRun.Model
         public string id { get; set; }
         public string status { get; set; }
         public string nama { get; set; }
-        public string waktu_mulai { get; set; }
+        public string waktu_mulai { get; set; } 
+        public int key { get; set; }
     }
 }
