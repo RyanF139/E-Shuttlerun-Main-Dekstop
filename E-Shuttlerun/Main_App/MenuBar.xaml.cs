@@ -28,6 +28,7 @@ namespace E_Shuttlerun.Main_App
         public string nama_user; // From Main App
         public string id_testor;
         public string mode;
+        public string nrp_panitia;
 
         public string seleksiid;
         public string namaseleksi;
@@ -47,6 +48,7 @@ namespace E_Shuttlerun.Main_App
             nama_user = _mainapp.nama_user.ToString(); //namaTestor dari mainapp
             id_testor = _mainapp.id_testor.ToString();
             mode = _mainapp.mode.ToString(); // From Main App
+            nrp_panitia = _mainapp.nrp_pantia.ToString();
            
             ValidasiAksesUser();
 

@@ -41,10 +41,11 @@
                                    Height="25" Width="25" Margin="11,0,0,0"
                                    VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             <TextBox Height="auto" Width="250" Margin="46,10,0,7"
-                                     Name="textUsername"
+                                     x:Name="textUsername"
                                      FontSize="16"
                                      materialDesign:HintAssist.Hint="Username"                             
-                                     materialDesign:HintAssist.HelperTextFontSize="20"/>
+                                     materialDesign:HintAssist.HelperTextFontSize="20"
+                                     KeyDown="textUsername_KeyDown"/>
                         </Grid>
                     </materialDesign:Card>
                 </StackPanel>
@@ -62,7 +63,8 @@
                             <PasswordBox Height="auto" Width="250" Margin="46,10,0,7"
                                          Name="textPassword"
                                          FontSize="16"                              
-                                         materialDesign:HintAssist.Hint="Password"/>
+                                         materialDesign:HintAssist.Hint="Password"
+                                         KeyDown="textPassword_KeyDown"/>
                         </Grid>
                     </materialDesign:Card>
                 </StackPanel>

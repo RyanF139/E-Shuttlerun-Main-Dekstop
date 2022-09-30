@@ -29,15 +29,18 @@ namespace E_Shuttlerun.Run
         string urlStandalone = System.Configuration.ConfigurationManager.AppSettings["SERVER_API_LOCAL"];
         string urlIntegrated = System.Configuration.ConfigurationManager.AppSettings["SERVER_API"];
         string url;
-        string route = "/seleksi";
+        string route = "/seleksi?panitia_nrp=";
         string mode;
+        string nrp_pantia;
 
         public Main_App.MenuBar _menuBar;
         public MainRun(Main_App.MenuBar menuBar)
         {
             InitializeComponent();            
             _menuBar = menuBar;
-            mode = _menuBar.mode.ToString() ;            
+            mode = _menuBar.mode.ToString();            
+            nrp_pantia = _menuBar.nrp_panitia.ToString();
+
             ValidateUrl();
             GetSeleksi();
         }
@@ -59,7 +62,8 @@ namespace E_Shuttlerun.Run
         {
             try
             {               
-                string GET_ListSeleksi = url + route;
+                string GET_ListSeleksi = url + route+nrp_pantia;
+                //MessageBox.Show(GET_ListSeleksi);
                 HttpResponseMessage response = await client.GetAsync(GET_ListSeleksi);
                 response.EnsureSuccessStatusCode();
 
@@ -71,17 +75,33 @@ namespace E_Shuttlerun.Run
                 JArray data = (JArray)stuff["data"];
                 Console.Write(data);
 
-
-                foreach (JObject obj in data)
-                {                    
-                    PanelMainRun.Children.Add(new Card_SeleksiRun(this, new PilihSeleksiModel
+                if (mode == "Integrated")
+                {
+                    foreach (JObject obj in data)
                     {
-                        id = obj["id"].ToString(),
-                        status = obj["status"].ToString(),
-                        nama = obj["nama"].ToString(),
-                        waktu_mulai = obj["tanggal_mulai"].ToString() + " " + "S.d" + " " + obj["tanggal_selesai"]
-                    }));
+                        PanelMainRun.Children.Add(new Card_SeleksiRun(this, new PilihSeleksiModel
+                        {
+                            id = obj["id"].ToString(),
+                            status = obj["status"].ToString(),
+                            nama = obj["nama"].ToString() + " " + obj["angkatan"].ToString(),
+                            waktu_mulai = obj["tanggal_mulai"].ToString() + " " + "S.d" + " " + obj["tanggal_selesai"]
+                        })); ;
+                    }
                 }
+                else if (mode == "Standalone")
+                {
+                    foreach (JObject obj in data)
+                    {
+                        PanelMainRun.Children.Add(new Card_SeleksiRun(this, new PilihSeleksiModel
+                        {
+                            id = obj["id"].ToString(),
+                            status = obj["status"].ToString(),
+                            nama = obj["nama"].ToString(),
+                            waktu_mulai = obj["tanggal_mulai"].ToString() + " " + "S.d" + " " + obj["tanggal_selesai"]
+                        })); ;
+                    }
+                }
+                
             }
             catch (HttpRequestException e)
             {

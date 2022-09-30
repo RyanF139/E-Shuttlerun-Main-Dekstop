@@ -24,6 +24,7 @@ namespace E_Shuttlerun.Login
         public string status_user; // From Login & Change Password
         public string nama_user; // From Login & Change Password
         public string id_testor;
+        public string nrp_panitia;
 
         public MainWindow _main;        
         public MainLogin(MainWindow main)
@@ -43,13 +44,14 @@ namespace E_Shuttlerun.Login
             PanelLogin.Children.Add(card_Login);
         }
 
-        public void callapp(String _status_user, String _nama_user, String _id_testor)
+        public void callapp(String _status_user, String _nama_user, String _id_testor, String _nrp_pantia)
         {
             status_user = _status_user.ToString(); // From Login & Change Password
             nama_user = _nama_user.ToString(); // From Login & Change Password
             id_testor = _id_testor.ToString();
-            
-            _main.CallMainApp(status_user, nama_user, id_testor, mode);
+            nrp_panitia = _nrp_pantia.ToString();
+
+            _main.CallMainApp(status_user, nama_user, id_testor, mode, nrp_panitia);
         }
         
         public void ValidateMode()

@@ -92,12 +92,14 @@ namespace E_Shuttlerun.Login
                 string status_users = _card_login.status_user.ToString();
                 string nama_testor = _card_login.nama_user.ToString();
                 string id_testor = _card_login.id_testor.ToString();
+                string nrp_panitia = _card_login.nrp_panitia.ToString();
+
                 Console.WriteLine(message,status_users);
 
                 if (status == "Success")
                 {
                     //_card_login._mainLogin.callapp(status_users, nama_testor);
-                    _card_login._mainLogin.callapp(status_users, id_testor , nama_testor);
+                    _card_login._mainLogin.callapp(status_users, id_testor , nama_testor, nrp_panitia);
                 }
                 else
                 {

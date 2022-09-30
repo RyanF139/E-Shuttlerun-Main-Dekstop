@@ -28,8 +28,9 @@ namespace E_Shuttlerun.Daftar_Capaian
         string urlStandalone = System.Configuration.ConfigurationManager.AppSettings["SERVER_API_LOCAL"];
         string urlIntegrated = System.Configuration.ConfigurationManager.AppSettings["SERVER_API"];
         string url;
-        string route = "/seleksi";
+        string route = "/seleksi?panitia_nrp=";
         string mode;
+        string nrp_panitia;
         
 
         public Main_App.MenuBar _menubar;
@@ -38,6 +39,8 @@ namespace E_Shuttlerun.Daftar_Capaian
             InitializeComponent();           
             _menubar = menubar;
             mode = _menubar.mode.ToString();
+            nrp_panitia = _menubar.nrp_panitia.ToString();
+
             ValidateUrl();
             GetSeleksi();
         }
@@ -58,7 +61,7 @@ namespace E_Shuttlerun.Daftar_Capaian
         {
             try
             {                
-                string GET_ListSeleksi = url + route;
+                string GET_ListSeleksi = url + route+nrp_panitia;
                 HttpResponseMessage response = await client.GetAsync(GET_ListSeleksi);
                 response.EnsureSuccessStatusCode();
 
@@ -70,17 +73,33 @@ namespace E_Shuttlerun.Daftar_Capaian
                 JArray data = (JArray)stuff["data"];
                 Console.Write(data);
 
-
-                foreach (JObject obj in data)
+                if (mode == "Integrated")
                 {
-                    PanelMainDaftarCapaian.Children.Add(new Card_SeleksiDaftarCapaian(this, new PilihSeleksiModel
+                    foreach (JObject obj in data)
                     {
-                        id = obj["id"].ToString(),
-                        status = obj["status"].ToString(),
-                        nama = obj["nama"].ToString(),
-                        waktu_mulai = obj["tanggal_mulai"].ToString() + " " + "S.d" + " " + obj["tanggal_selesai"]
-                    }));
+                        PanelMainDaftarCapaian.Children.Add(new Card_SeleksiDaftarCapaian(this, new PilihSeleksiModel
+                        {
+                            id = obj["id"].ToString(),
+                            status = obj["status"].ToString(),
+                            nama = obj["nama"].ToString() + " " + obj["angkatan"].ToString(),
+                            waktu_mulai = obj["tanggal_mulai"].ToString() + " " + "S.d" + " " + obj["tanggal_selesai"]
+                        }));
+                    }
                 }
+                else if (mode == "Standalone")
+                {
+                    foreach (JObject obj in data)
+                    {
+                        PanelMainDaftarCapaian.Children.Add(new Card_SeleksiDaftarCapaian(this, new PilihSeleksiModel
+                        {
+                            id = obj["id"].ToString(),
+                            status = obj["status"].ToString(),
+                            nama = obj["nama"].ToString(),
+                            waktu_mulai = obj["tanggal_mulai"].ToString() + " " + "S.d" + " " + obj["tanggal_selesai"]
+                        }));
+                    }
+                }
+                
             }
             catch (HttpRequestException e)
             {

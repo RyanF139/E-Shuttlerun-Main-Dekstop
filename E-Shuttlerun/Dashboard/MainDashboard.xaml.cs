@@ -29,7 +29,9 @@ namespace E_Shuttlerun.Dashboard
         string urlIntegrated = System.Configuration.ConfigurationManager.AppSettings["SERVER_API"];
         string url;
         string mode;
-        string route = "/seleksi";
+        string nrp_panitia;
+
+        string route = "/seleksi?panitia_nrp=";
         public Card_SeleksiDashboard _card;
 
         public string IdSeleksi;
@@ -41,6 +43,8 @@ namespace E_Shuttlerun.Dashboard
             _menuBar = menuBar;
 
             mode = _menuBar.mode.ToString();
+            nrp_panitia= _menuBar.nrp_panitia.ToString();
+
             _card = null;
             ValidateUrl();
             GetSeleksi();            
@@ -98,7 +102,8 @@ namespace E_Shuttlerun.Dashboard
         {
             try
             {                
-                string GET_ListSeleksi = url + route;
+                string GET_ListSeleksi = url + route+nrp_panitia;
+                //MessageBox.Show(GET_ListSeleksi);
                 HttpResponseMessage response = await client.GetAsync(GET_ListSeleksi);
                 response.EnsureSuccessStatusCode();
 
@@ -113,19 +118,39 @@ namespace E_Shuttlerun.Dashboard
                
 
                 PanelSeleksiDashboard.Children.Clear();
-                int key = 0;
-                foreach (JObject obj in data)
+                if ( mode == "Integrated")
                 {
-                    PanelSeleksiDashboard.Children.Add(new Card_SeleksiDashboard(this, new PilihSeleksiModel
+                    int key = 0;
+                    foreach (JObject obj in data)
                     {
-                        id = obj["id"].ToString(),
-                        status = obj["status"].ToString(),
-                        nama = obj["nama"].ToString(),
-                        waktu_mulai = obj["tanggal_mulai"].ToString() + " " + "S.d" + " " + obj["tanggal_selesai"],
-                        key = key
-                    })) ;
-                    key ++;
+                        PanelSeleksiDashboard.Children.Add(new Card_SeleksiDashboard(this, new PilihSeleksiModel
+                        {
+                            id = obj["id"].ToString(),
+                            status = obj["status"].ToString(),
+                            nama = obj["nama"].ToString() + " " + obj["angkatan"].ToString(),
+                            waktu_mulai = obj["tanggal_mulai"].ToString() + " " + "S.d" + " " + obj["tanggal_selesai"],
+                            key = key
+                        }));
+                        key++;
+                    }
                 }
+                else if (mode == "Standalone")
+                {
+                    int key = 0;
+                    foreach (JObject obj in data)
+                    {
+                        PanelSeleksiDashboard.Children.Add(new Card_SeleksiDashboard(this, new PilihSeleksiModel
+                        {
+                            id = obj["id"].ToString(),
+                            status = obj["status"].ToString(),
+                            nama = obj["nama"].ToString(),
+                            waktu_mulai = obj["tanggal_mulai"].ToString() + " " + "S.d" + " " + obj["tanggal_selesai"],
+                            key = key
+                        }));
+                        key++;
+                    }
+                }
+                
 
                 cekSelected();
             }

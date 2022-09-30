@@ -32,15 +32,23 @@ namespace E_Shuttlerun.Login
         public string id_testor;
         public string status_user;
         public string nama_user;
+        public string nrp_panitia;
         string mode; // from MainLogin
 
         public MainLogin _mainLogin;        
         public Card_Login(MainLogin mainLogin)
         {
-            InitializeComponent();
+            InitializeComponent();            
             _mainLogin = mainLogin;
-            mode = _mainLogin.mode; 
-            
+            mode = _mainLogin.mode;
+
+            textUsername.Focusable = true;
+            textUsername.Focus();
+            Loaded += (s, e) => Keyboard.Focus(textUsername);
+
+
+
+
         }
 
         private void btn_Login_Click(object sender, RoutedEventArgs e)
@@ -105,7 +113,8 @@ namespace E_Shuttlerun.Login
 
                     id_testor = data["id"].ToString();
                     nama_user = data["nama"].ToString();
-                    status_user = data["role"].ToString();                    
+                    status_user = data["role"].ToString();
+                    nrp_panitia= textUsername.Text;
                     bool status_password = ((bool)data["status_password"]);
                     //Console.WriteLine(status_password);
                     //MessageBox.Show(nama_user);
@@ -113,7 +122,7 @@ namespace E_Shuttlerun.Login
                     if (status_user == "PANITIA" && status_password == true || status_user == "ADMIN" && status_password == true || status_user == "TESTOR" && status_password == true)
                     {
                         MessageBox.Show(message);
-                        _mainLogin.callapp(status_user, nama_user,id_testor);
+                        _mainLogin.callapp(status_user, nama_user,id_testor,nrp_panitia);
                     }                   
                     else if (status_password == false)
                     {
@@ -131,6 +140,24 @@ namespace E_Shuttlerun.Login
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void textUsername_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                RoutedEventArgs newEventArgs = new RoutedEventArgs(Button.ClickEvent);
+                btn_Login.RaiseEvent(newEventArgs);
+            }
+        }
+
+        private void textPassword_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Enter)
+            {
+                RoutedEventArgs newEventArgs = new RoutedEventArgs(Button.ClickEvent);
+                btn_Login.RaiseEvent(newEventArgs);
             }
         }
     }

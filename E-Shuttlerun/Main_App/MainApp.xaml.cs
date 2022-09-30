@@ -26,6 +26,8 @@ namespace E_Shuttlerun.Main_App
         public string nama_user;
         public string id_testor;
         public string mode;
+        public string nrp_pantia;
+
         public MainApp(MainWindow main)
         {
             InitializeComponent();
@@ -35,6 +37,8 @@ namespace E_Shuttlerun.Main_App
             nama_user = _main.nama_user.ToString();
             id_testor = _main.id_testor.ToString();
             mode = _main.mode.ToString() ;
+            nrp_pantia = _main.nrp_panitia.ToString();
+
             LabelUser.Content = status_user;
             CallMenuBar();
            
