@@ -68,6 +68,7 @@ namespace E_Shuttlerun.Run
             PilihSeleksiModel model = btn.DataContext as PilihSeleksiModel;
             /*string seleksi_id = model.id;*/
             Console.WriteLine(Run_Activity);
+            Console.WriteLine(seleksiid);
             string argument = String.Format("{0} \"{1}\" {2}", id_testor, nama_testor,seleksiid);
             Console.WriteLine(argument);
             Process p = new Process();

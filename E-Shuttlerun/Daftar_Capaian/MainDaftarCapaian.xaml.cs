@@ -81,7 +81,7 @@ namespace E_Shuttlerun.Daftar_Capaian
                         {
                             id = obj["id"].ToString(),
                             status = obj["status"].ToString(),
-                            nama = obj["nama"].ToString() + " " + obj["angkatan"].ToString(),
+                            nama = obj["nama"].ToString() + " " + obj["angkatanid"].ToString(),
                             waktu_mulai = obj["tanggal_mulai"].ToString() + " " + "S.d" + " " + obj["tanggal_selesai"]
                         }));
                     }

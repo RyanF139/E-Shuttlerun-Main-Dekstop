@@ -1,8 +1,10 @@
 ﻿using E_ShuttleRun.Model;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,6 +24,12 @@ namespace E_Shuttlerun.Main_App
     /// </summary>
     public partial class MenuBar : UserControl
     {
+
+        private static readonly HttpClient client = new HttpClient();
+
+        public string urlIntegrated = System.Configuration.ConfigurationManager.AppSettings["SERVER_API"];
+
+
         MainApp _mainapp;        
 
         public string status_user; // From Main App
@@ -42,7 +50,7 @@ namespace E_Shuttlerun.Main_App
             CardRun.Visibility = Visibility.Hidden;
             CardRegistrasi.Visibility = Visibility.Hidden;
             CardDaftarCapaian.Visibility = Visibility.Hidden;
-            CardListSelski.Visibility = Visibility.Hidden;
+            CardListSelski.Visibility = Visibility.Hidden;           
 
             status_user = _mainapp.status_user.ToString(); //status dari mainapp
             nama_user = _mainapp.nama_user.ToString(); //namaTestor dari mainapp
@@ -220,7 +228,7 @@ namespace E_Shuttlerun.Main_App
                 CardRegistrasi.Visibility = Visibility.Hidden;
                 CardDaftarCapaian.Visibility = Visibility.Hidden;
                 CardListSelski.Visibility = Visibility.Hidden;
-            }
+            }            
         }
 
         public void CallMainDashboard()
@@ -316,7 +324,6 @@ namespace E_Shuttlerun.Main_App
         public void ClearMainPanel()
         {
             _mainapp.PanelMainApp.Children.Clear();
-        }
-
+        }                
     }
 }
